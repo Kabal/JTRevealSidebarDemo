@@ -11,6 +11,11 @@
 #import "JTRevealSidebarV2Delegate.h"
 #import <objc/runtime.h>
 
+NSString * const JTRevealSidebarWillRevealLeftSidebarNotification = @"JTRevealSidebarWillRevealLeftSidebarNotification";
+NSString * const JTRevealSidebarWillHideLeftSidebarNotification = @"JTRevealSidebarWillHideLeftSidebarNotification";
+NSString * const JTRevealSidebarWillRevealRightSidebarNotification = @"JTRevealSidebarWillRevealRightSidebarNotification";
+NSString * const JTRevealSidebarWillHideRightSidebarNotification = @"JTRevealSidebarWillHideRightSidebarNotification";
+
 @interface UIViewController (JTRevealSidebarV2Private)
 
 - (void)revealLeftSidebar:(BOOL)showLeftSidebar;
@@ -144,6 +149,14 @@ static char *revealedStateKey;
 
 
     [UIView commitAnimations];
+    
+    if (showLeftSidebar)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:JTRevealSidebarWillRevealLeftSidebarNotification object:self userInfo:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:JTRevealSidebarWillHideLeftSidebarNotification object:self userInfo:nil];
+    }
 }
 
 - (void)revealRightSidebar:(BOOL)showRightSidebar {
@@ -178,6 +191,15 @@ static char *revealedStateKey;
     NSLog(@"%@", NSStringFromCGAffineTransform(self.view.transform));
     
     [UIView commitAnimations];
+    
+    if (showRightSidebar)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:JTRevealSidebarWillRevealLeftSidebarNotification object:self userInfo:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:JTRevealSidebarWillHideLeftSidebarNotification object:self userInfo:nil];
+    }
+
 }
 
 @end

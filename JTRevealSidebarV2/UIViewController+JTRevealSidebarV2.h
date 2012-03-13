@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const JTRevealSidebarWillRevealLeftSidebarNotification;
+extern NSString * const JTRevealSidebarWillRevealRightSidebarNotification;
+extern NSString * const JTRevealSidebarWillHideLeftSidebarNotification;
+extern NSString * const JTRevealSidebarWillHideRightSidebarNotification;
+extern NSString * const JTRevealSidebarWillHideLeftSidebarNotification;
+
 typedef enum {
     JTRevealedStateNo,
     JTRevealedStateLeft,
